@@ -15,16 +15,21 @@ __Описание приложения__
 - Тематические цитаты;
 
 ### Запуск тестов
+
 __Установка__  
 - appium v2.x.x `npm i -g appium@next`
 - driver uiautomator2 `appium driver install uiautomator2`
 
 __Запуск__  
-- Клонировать репо
-- Установить зависимости `pip install -r requirements.txt`
-- Подключить устройство или запустить эмулятор (Android)
-- Запуск тестов `python -m pytest --alluredir=./tmp/allure_report ./tests`
 
-__Отчет__
-- Просмотр отчёта `allure serve ./tmp/allure_report`  
-  [как установить allure](https://docs.qameta.io/allure-report/#_installing_a_commandline)
+- Склонировать на локальный репозиторий Дипломный проект;
+- Запустить Android Studio;
+- Запустить приложение(ввести логин:login2, пароль:password2);
+- В терминале перейти в корневую директорию проекта и выполнить команду для запуска всех авто-тестов ./gradlew clean connectedAndroidTest ;
+
+__Формирование отчета Allure с эмулятора__
+
+- Открыть Device File Explorer на эмуляторе;
+- Выгрузить каталог результатов тестирования расположенный на эмуляторе ./tmp/allure_report;
+- В терминале, в директории каталога с результатами тестирования, запустить команду allure serve; 
+- Дождаться генерации отчёта и посмотреть его в открывшемся окне браузера;

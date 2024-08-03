@@ -55,7 +55,7 @@ def test_filter_claims(auth):
     assert_that(claim_page.claim_label.is_displayed())
 
 
-def test_view_news(auth):
+def test_filter_claims(auth):
     main_page, header = auth
     news_page = main_page \
         .all_news_view() \
