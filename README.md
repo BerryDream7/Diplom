@@ -16,16 +16,17 @@ __Описание приложения__
 
 ### Запуск тестов
 
-__Установка__  
+__Установка __  
 - appium v2.x.x `npm i -g appium@next`
 - driver uiautomator2 `appium driver install uiautomator2`
 
 __Запуск__  
 
 - Склонировать на локальный репозиторий Дипломный проект;
-- Запустить Android Studio;
-- Запустить приложение(ввести логин:login2, пароль:password2);
-- В терминале перейти в корневую директорию проекта и выполнить команду для запуска всех авто-тестов ./gradlew clean connectedAndroidTest ;
+- Запустить репозиторий в Android Studio;
+- Установить эмулятор Android API 29 и зависимости командой pip install -r requirements.txt
+- Запустить приложениеми ввести: логин:login2, пароль:password2 ;
+- В терминале выполнить команду для запуска всех авто-тестов: python -m pytest --alluredir=./tmp/allure_report ./tests ;
 
 __Формирование отчета Allure с эмулятора__
 
