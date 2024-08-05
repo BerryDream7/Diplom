@@ -22,9 +22,18 @@ __Установка __
 
 __Запуск__  
 
-- Склонировать на локальный репозиторий Дипломный проект;
-- Запустить репозиторий в Android Studio;
+- Перед началом работ на копьютере должен быть установлена программа Android studio (инструкция по установке: https://github.com/netology-code/guides/blob/master/android/android_studio/instruction1.md)
+- Заходим в командную строку на вашем ПК и выполняем следующие действия:
+    - Вводим python -m venv tutorial-env  для установки окружения python на пк;
+    - Активируем python с помощью команды tutorial-env\Scripts\activate на windows;
+    - Устанавливаем Appium по команде npm install -g appium ;
+    - Устанавливаем драйвера по команде appium driver install uiautomator2 ;
+    - Устанавливаем appium-doctor с помощью команды npm install @appium/doctor -g
+    - С помощью команды appium-doctor проверяем установлено ли все правильно;
+- Когда все установили клонируем на локальный репозиторий Дипломный проект;
+- Запускаем репозиторий в Android Studio;
 - Установить эмулятор Android API 29 и зависимости командой pip install -r requirements.txt
+- В Android studio может быть подсказка для установки python в программе, выбираем install
 - Запустить приложениеми ввести: логин:login2, пароль:password2 ;
 - В терминале выполнить команду для запуска всех авто-тестов: python -m pytest --alluredir=./tmp/allure_report ./tests ;
 
