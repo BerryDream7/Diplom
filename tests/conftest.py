@@ -1,4 +1,4 @@
-from pathlib import Path
+import pathlib
 
 import pytest
 from appium import webdriver
@@ -12,21 +12,22 @@ pytest_plugins = ["pages_fixtures"]
 def appium_service():
     service = AppiumService()
     service.start()
-    # service.start(args=["--config-file", str(Path(Path.cwd(), ".appiumrc.json"))])
+    service.start(args=["--config-file", str(pathlib.Path(pathlib.Path.cwd(), ".appiumrc.json"))])
     yield
     service.stop()
 
 
-def appium_options():
+def appium_driver():
     caps = {
         "platformName": "Android",
         "appium:options": {
-            "automationName": "UiAutomator2",
+            'deviceName': 'emulator-5554',
+            "platformVersion": '9',
             "allowTestPackages": "true",
-            "app": str(Path(Path.cwd(), "apk", "app-debug.apk")),
-            "autoLaunch": "false"
-            # "appPackage": "ru.iteco.fmhandroid",
-            # "appActivity": ".ui.AppActivity"
+            "app": str(pathlib.Path(pathlib.Path.cwd(), "apk", "app-debug.apk")),
+            "autoLaunch": "false",
+            "appPackage": "ru.iteco.fmhandroid",
+            "appActivity": ".ui.AppActivity"
         }
     }
     app_options = UiAutomator2Options().load_capabilities(caps=caps)
@@ -34,9 +35,9 @@ def appium_options():
     return [app_options]
 
 
-@pytest.fixture(scope="session", params=appium_options(), name="driver")
+@pytest.fixture(scope="session", params=appium_driver(), name="driver")
 def appium_session(request, appium_service):
-    driver = webdriver.Remote("http://127.0.0.1:4723", options=request.param)
+    driver = webdriver.Remote("http://127.0.0.1:4723/", options=request.param)
     yield driver
     driver.remove_app(app_id="ru.iteco.fmhandroid")
     driver.quit()
@@ -46,5 +47,5 @@ def appium_session(request, appium_service):
 def setup(driver):
     driver.activate_app(app_id="ru.iteco.fmhandroid")
     yield
-    # driver.terminate_app(app_id="ru.iteco.fmhandroid")
+    driver.terminate_app(app_id="ru.iteco.fmhandroid")
     driver.execute_script("mobile: clearApp", {"appId": "ru.iteco.fmhandroid"})
