@@ -5,6 +5,7 @@ from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.appium_service import AppiumService
 
+
 pytest_plugins = ["pages_fixtures"]
 
 
@@ -21,7 +22,7 @@ def appium_driver():
     caps = {
         "platformName": "Android",
         "appium:options": {
-            'deviceName': 'emulator-5554',
+            'deviceName': 'UiAutomator2',
             "platformVersion": '9',
             "allowTestPackages": "true",
             "app": str(pathlib.Path(pathlib.Path.cwd(), "apk", "app-debug.apk")),
@@ -37,7 +38,7 @@ def appium_driver():
 
 @pytest.fixture(scope="session", params=appium_driver(), name="driver")
 def appium_session(request, appium_service):
-    driver = webdriver.Remote("http://127.0.0.1:4723/", options=request.param)
+    driver = webdriver.Remote("http://127.0.0.1:4723/", options=request.params)
     yield driver
     driver.remove_app(app_id="ru.iteco.fmhandroid")
     driver.quit()
